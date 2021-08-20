@@ -1,0 +1,20 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "server",
+  "generateOptions": {
+    "spec": false
+  },
+  "compilerOptions": {
+    "assets": [
+      {
+        "outDir": "./dist/server",
+        "include": "assets/**/*",
+        "watchAssets": true
+      }
+    ],
+    "webpack": true,
+    "webpackConfigPath": "webpack.config.js",
+    "deleteOutDir": true,
+    "tsConfigPath": "tsconfig.server.json"
+  }
+}
