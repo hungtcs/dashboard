@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { BreakpointObserver, Breakpoints, MediaMatcher } from '@angular/cdk/layout';
 
 export type ColorMode = 'dark' | 'light';
+export type BreakpointKeys = keyof typeof Breakpoints | null;
 export const COLOR_MODE_STORAGE_KEY = 'COLOR_MODE';
 
 @Injectable({
@@ -10,7 +11,7 @@ export const COLOR_MODE_STORAGE_KEY = 'COLOR_MODE';
 })
 export class LookAndFeelService {
   public colorMode = new BehaviorSubject<ColorMode>('light');
-  public currentBreakpoint = new BehaviorSubject<null | keyof typeof Breakpoints>(null);
+  public currentBreakpoint = new BehaviorSubject<BreakpointKeys>(null);
 
   constructor(
       private readonly mediaMatcher: MediaMatcher,

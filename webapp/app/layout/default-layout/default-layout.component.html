@@ -1,15 +1,14 @@
 <mat-toolbar color="primary">
   <button mat-icon-button (click)="sidenavOpened = !sidenavOpened;">
     <mat-icon>menu</mat-icon>
-    {{ currentScreenSize }}
   </button>
 </mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav mode="over" [opened]="sidenavOpened">
+  <mat-sidenav [mode]="sidenavMode" [(opened)]="sidenavOpened">
     Sidenav content
   </mat-sidenav>
   <mat-sidenav-content>
-    <!-- Sidenav content -->
+    Sidenav content
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
