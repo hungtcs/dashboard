@@ -2,11 +2,25 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./out-tsc/app",
+    "forceConsistentCasingInFileNames": true,
     "types": [],
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "importHelpers": true,
     "module": "ES2020",
     "target": "ES2017",
-    "moduleResolution": "node"
+    "lib": [
+      "es2018",
+      "dom"
+    ],
   },
   "files": [
     "webapp/main.ts",
@@ -14,9 +28,5 @@
   ],
   "include": [
     "webapp/**/*.d.ts"
-  ],
-  "exclude": [
-    "server/**/*",
-    "node_modules/**/*"
   ]
 }

@@ -13,8 +13,16 @@
       }
     ],
     "webpack": true,
-    "webpackConfigPath": "webpack.config.js",
+    "webpackConfigPath": "webpack.config.server.js",
     "deleteOutDir": true,
-    "tsConfigPath": "tsconfig.server.json"
+    "tsConfigPath": "tsconfig.server.json",
+    "production": {
+      "fileReplacements": [
+        {
+          "replace": "server/environments/environment.ts",
+          "with": "server/environments/environment.prod.ts"
+        }
+      ]
+    }
   }
 }

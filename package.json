@@ -6,8 +6,10 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
-    "build:server": "nest build",
+    "start": "node dist/server/main.js",
+    "build": "npm run build:server && npm run build:webapp",
+    "start:dev": "concurrently --names \"server,webapp\" \"npm run start:server:dev\" \"npm run start:webapp:dev\"",
+    "build:server": "NODE_ENV=production nest build",
     "start:server:dev": "nest start --debug --watch",
     "build:webapp": "ng build",
     "start:webapp:dev": "ng serve"
@@ -16,8 +18,17 @@
     "node": ">=v14.17"
   },
   "dependencies": {
+    "@nestjs/common": "^8.0.0",
+    "@nestjs/core": "^8.0.0",
+    "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/serve-static": "^2.2.2",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "~7.3.0"
+  },
+  "devDependencies": {
+    "tslib": "^2.3.0",
+    "zone.js": "~0.11.4",
     "@angular/animations": "~12.2.0",
-    "@angular/cli": "^12.2.2",
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
@@ -25,15 +36,6 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
-    "@nestjs/common": "^8.0.0",
-    "@nestjs/core": "^8.0.0",
-    "@nestjs/platform-express": "^8.0.0",
-    "reflect-metadata": "^0.1.13",
-    "rxjs": "~6.6.0",
-    "tslib": "^2.3.0",
-    "zone.js": "~0.11.4"
-  },
-  "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.2",
     "@angular/cli": "~12.2.2",
     "@angular/compiler-cli": "~12.2.0",
@@ -44,6 +46,7 @@
     "@types/node": "^16.0.0",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
+    "concurrently": "^6.2.1",
     "eslint": "^7.30.0",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",
