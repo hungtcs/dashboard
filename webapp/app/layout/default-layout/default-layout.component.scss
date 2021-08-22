@@ -1,10 +1,56 @@
+@use '~@angular/material' as mat;
+@use "../../../styles/utils/responsive" as responsive;
 
 :host {
-  display: block;
+  display: flex;
+  flex-flow: column nowrap;
   min-height: 100vh;
 }
 
+mat-toolbar {
+  @include mat.elevation(8);
+  flex: 0 0 auto;
+  top: 0px;
+  z-index: 10;
+  position: sticky;
+  > h2 {
+    margin: 0px 0px 0px 16px;
+    display: flex;
+    align-items: center;
+    > span {
+      margin: 0px 0px 0px 8px;
+    }
+  }
+}
+
+mat-sidenav {
+  overflow: initial;
+  ::ng-deep {
+    > .mat-drawer-inner-container {
+      overflow: initial;
+    }
+  }
+  app-sidenav {
+    top: 0px;
+    width: 220px;
+    height: 100vh;
+    position: sticky;
+  }
+}
+
+mat-sidenav-content {
+  flex: 1 1 auto;
+  display: flex;
+  overflow: initial;
+  flex-flow: column nowrap;
+  > main {
+    flex: 1 1 auto;
+  }
+}
 
 mat-sidenav-container {
-  min-height: calc(100vh - 64px);
+  flex: 1 1 auto;
+  display: flex;
+  overflow: initial;
+  flex-flow: column nowrap;
 }

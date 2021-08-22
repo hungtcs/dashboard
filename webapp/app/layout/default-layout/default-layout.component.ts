@@ -9,9 +9,8 @@ import { BreakpointKeys, LookAndFeelService } from 'webapp/app/shared/services';
   styleUrls: ['./default-layout.component.scss']
 })
 export class DefaultLayoutComponent implements OnInit {
-  public sidenavMode: MatDrawerMode = 'push';
   public sidenavOpened: boolean = false;
-  public currentBreakpoint: BreakpointKeys = null;
+  // public currentBreakpoint: BreakpointKeys = null;
 
   constructor(
       private readonly lookAndFeelService: LookAndFeelService) {
@@ -19,16 +18,18 @@ export class DefaultLayoutComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.lookAndFeelService.currentBreakpoint
-      .pipe(tap(breakpoint => this.currentBreakpoint = breakpoint))
-      .pipe(tap(brrakpoint => {
-        if(['XSmall', 'Small', null].includes(brrakpoint)) {
-          this.sidenavMode = 'over';
-        } else {
-          this.sidenavMode = 'side';
-        }
-      }))
-      .subscribe();
+    // this.lookAndFeelService.currentBreakpoint
+    //   .pipe(tap(breakpoint => this.currentBreakpoint = breakpoint))
+    //   .pipe(tap(brrakpoint => {
+    //     if(['XSmall', 'Small', null].includes(brrakpoint)) {
+    //       this.sidenavMode = 'over';
+    //       this.sidenavOpened = false;
+    //     } else {
+    //       this.sidenavMode = 'side';
+    //       // this.sidenavOpened = true;
+    //     }
+    //   }))
+    //   .subscribe();
   }
 
 }

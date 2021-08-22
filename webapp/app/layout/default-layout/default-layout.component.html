@@ -1,14 +1,19 @@
-<mat-toolbar color="primary">
-  <button mat-icon-button (click)="sidenavOpened = !sidenavOpened;">
-    <mat-icon>menu</mat-icon>
-  </button>
-</mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav [mode]="sidenavMode" [(opened)]="sidenavOpened">
-    Sidenav content
+  <mat-sidenav mode="over" [(opened)]="sidenavOpened">
+    <app-sidenav></app-sidenav>
   </mat-sidenav>
   <mat-sidenav-content>
-    Sidenav content
-    <router-outlet></router-outlet>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenavOpened = !sidenavOpened;">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h2>
+        <mat-icon>pie_chart</mat-icon>
+        <span>Dashboard</span>
+      </h2>
+    </mat-toolbar>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,7 +1,24 @@
+@use '~@angular/material' as mat;
+
 :host {
-  display: block;
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  > gridster {
+    flex: 1 1 auto;
+    background-color: transparent;
+    > gridster-item {
+      @include mat.elevation(2);
+      overflow: visible;
+      border-radius: 8px;
+      &.gridster-item-moving {
+        z-index: 2 !important;
+      }
+    }
+  }
 }
 
 .container {
-  height: 300px;
+  width: 100%;
+  height: 100%;
 }

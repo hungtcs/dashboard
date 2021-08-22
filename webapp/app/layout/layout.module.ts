@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   ],
   declarations: [
     DefaultLayoutComponent,
+    SidenavComponent,
   ],
 })
 export class LayoutModule {

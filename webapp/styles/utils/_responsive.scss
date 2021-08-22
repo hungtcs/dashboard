@@ -1,0 +1,31 @@
+@use "sass:map";
+
+$breakpoints: (
+  x-small: '(max-width: 599.98px)',
+  small: '(min-width: 600px) and (max-width: 959.98px)',
+  medium: '(min-width: 960px) and (max-width: 1279.98px)',
+  large: '(min-width: 1280px) and (max-width: 1919.98px)',
+  x-large: '(min-width: 1920px)',
+);
+
+@mixin media-matcher($names...) {
+  $breakpoint-names: () !default;
+  @if type-of($names) != "list" {
+    $breakpoint-names: ($names);
+  } @else {
+    $breakpoint-names: $names;
+  }
+
+  @each $breakpoint-name in $breakpoint-names {
+    $breakpoint: map.get($breakpoints, $breakpoint-name);
+
+    @if $breakpoint {
+      @media screen and #{ $breakpoint } {
+        @content;
+      }
+    } @else {
+      @error "responsive.media-matcher: breakpoint '" + $breakpoint-name + "' not difined";
+    }
+  }
+
+}
