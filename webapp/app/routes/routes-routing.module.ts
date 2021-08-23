@@ -10,7 +10,16 @@ const routes: Routes = [
     children: [
       {
         path: '',
+        pathMatch: 'full',
+        redirectTo: 'dashboard',
+      },
+      {
+        path: 'dashboard',
         loadChildren: () => import('./overview/overview.module').then(module => module.OverviewModule),
+      },
+      {
+        path: 'charts',
+        loadChildren: () => import('./charts/charts.module').then(module => module.ChartsModule),
       },
     ],
   },

@@ -16,7 +16,9 @@
     "build:server": "NODE_ENV=production nest build",
     "start:server:dev": "nest start --debug --watch",
     "build:webapp": "ng build",
-    "start:webapp:dev": "ng serve"
+    "start:webapp:dev": "ng serve",
+    "ng": "ng",
+    "nest": "nest"
   },
   "engines": {
     "node": ">=v14.17"

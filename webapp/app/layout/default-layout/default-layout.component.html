@@ -8,8 +8,8 @@
         <mat-icon>menu</mat-icon>
       </button>
       <h2>
-        <mat-icon>pie_chart</mat-icon>
-        <span>Dashboard</span>
+        <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
+        <span>{{ title }}</span>
       </h2>
       <button mat-icon-button>
         <mat-icon>fullscreen</mat-icon>
@@ -17,7 +17,7 @@
       </button>
     </mat-toolbar>
     <main>
-      <router-outlet></router-outlet>
+      <router-outlet #outlet (activate)="onRouterOutletActivate();"></router-outlet>
     </main>
   </mat-sidenav-content>
 </mat-sidenav-container>

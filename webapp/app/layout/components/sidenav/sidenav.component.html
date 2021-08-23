@@ -1,1 +1,12 @@
-<p>sidenav works!</p>
+<mat-nav-list>
+  <ng-container *ngFor="let item of navItems;">
+    <a mat-list-item
+      (click)="onNavItemClick();"
+      [routerLink]="item.link"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: item.exact ?? false }">
+      <mat-icon *ngIf="item.icon" mat-list-icon>{{ item.icon }}</mat-icon>
+      {{ item.name }}
+    </a>
+  </ng-container>
+</mat-nav-list>

@@ -1,20 +1,20 @@
 import { NgModule } from '@angular/core';
-import { OverviewComponent } from './overview.component';
+import { ChartsComponent } from './charts.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
     path: '',
     data: {
-      icon: 'dashboard',
-      title: 'Dashboard',
+      icon: 'pie_chart',
+      title: 'Charts',
     },
-    component: OverviewComponent,
-  },
+    component: ChartsComponent,
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class OverviewRoutingModule { }
+export class ChartsRoutingModule { }

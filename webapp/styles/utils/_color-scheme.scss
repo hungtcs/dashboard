@@ -5,7 +5,7 @@ $color-modes: (light, dark);
 // only work inside component
 @mixin matcher($mode) {
   @if list.index($color-modes, $mode) {
-    :host-context([data-color-mode="#{ $mode }"]) & {
+    :host-context([data-color-mode="#{ $mode }"]) {
       @content;
     }
   } @else {
