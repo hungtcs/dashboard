@@ -1,10 +1,14 @@
 {
   "name": "dashboard",
+  "author": "鸿则 <hungtcs@outlook.com> (https://github.com/hungtcs)",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
+  "homepage": "https://github.com/hungtcs/dashboard#readme",
+  "description": "a dashboard",
+  "bugs": {
+    "url": "https://github.com/hungtcs/dashboard/issues"
+  },
   "scripts": {
     "start": "node dist/server/main.js",
     "build": "npm run build:server && npm run build:webapp",
@@ -16,6 +20,10 @@
   },
   "engines": {
     "node": ">=v14.17"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hungtcs/dashboard.git"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
