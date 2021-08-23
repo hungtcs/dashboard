@@ -1,4 +1,4 @@
-@use '~@angular/material' as mat;
+@use "~@angular/material" as mat;
 
 :host {
   flex: 1 1 auto;
@@ -13,6 +13,13 @@
       border-radius: 8px;
       &.gridster-item-moving {
         z-index: 2 !important;
+      }
+    }
+    ::ng-deep {
+      > gridster-preview {
+        box-sizing: border-box;
+        border-radius: 8px;
+        border: 1px dashed gray;
       }
     }
   }

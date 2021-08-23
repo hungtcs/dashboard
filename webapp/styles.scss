@@ -1,12 +1,43 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "./styles/themes/themes" as themes;
+
 @import "./styles/themes/default";
 @import "./styles/material-icons";
 
+@mixin color($config-or-theme) {
+  $color-config: mat.get-color-config($config-or-theme);
+  $background: map.get($color-config, background);
+
+  body {
+    background-color: mat.get-color-from-palette($background, background);
+  }
+}
+
+@mixin theme($theme-or-color-config) {
+  $color-config: mat.get-color-config($theme-or-color-config);
+  @if $color-config != null {
+    @include color($theme-or-color-config);
+  }
+}
+
 html {
   min-height: 100vh;
+  overflow-x: hidden;
+  color-scheme: light;
+  &[data-color-mode="dark"] {
+    color-scheme: dark;
+  }
 }
 
 body {
   margin: 0;
   min-height: 100vh;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@include theme(themes.$light-theme);
+
+[data-color-mode="dark"] {
+  @include theme(themes.$dark-theme);
 }

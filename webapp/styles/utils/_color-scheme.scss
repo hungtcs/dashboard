@@ -1,0 +1,15 @@
+@use "sass:list" as list;
+
+$color-modes: (light, dark);
+
+// only work inside component
+@mixin matcher($mode) {
+  @if list.index($color-modes, $mode) {
+    :host-context([data-color-mode="#{ $mode }"]) & {
+      @content;
+    }
+  } @else {
+    @error "color-scheme-matcher: color mode '#{ $mode }' is not defined";
+  }
+
+}
