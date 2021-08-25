@@ -5,6 +5,7 @@ import { RoutesModule } from './routes/routes.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogConfig, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 @NgModule({
   imports: [
@@ -14,7 +15,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: <MatDialogConfig>{
+        ...new MatDialogConfig(),
+        panelClass: 'responsive-dialog-pane',
+      },
+    },
+  ],
   bootstrap: [
     AppComponent,
   ],

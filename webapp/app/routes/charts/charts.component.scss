@@ -1,4 +1,22 @@
 
 :host {
-  display: block;
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+@for $index from 0 to 32 {
+  .temp-#{ $index } {
+    flex: 1 1 auto;
+    height: 100%;
+    background-color: rgb(random($limit: 255), random($limit: 255), random($limit: 255));
+  }
+}
+
+.add-button {
+  right: 20px;
+  bottom: 20px;
+  position: fixed;
 }

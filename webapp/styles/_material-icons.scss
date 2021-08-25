@@ -21,4 +21,8 @@
   direction: ltr;
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
+  &.mat-icon {
+    width: 1em;
+    height: 1em;
+  }
 }

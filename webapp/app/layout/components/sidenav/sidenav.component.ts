@@ -8,12 +8,11 @@ import { Component, OnInit, Optional } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  public navItems = [
+  public navItems: Array<any> = [
     {
       icon: 'dashboard',
       name: 'Dashboard',
       link: '/dashboard',
-      exact: true,
     },
     {
       icon: 'pie_chart',

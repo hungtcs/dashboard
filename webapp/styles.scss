@@ -4,6 +4,7 @@
 
 @import "./styles/themes/default";
 @import "./styles/material-icons";
+@import "./styles/dialog";
 
 @mixin color($config-or-theme) {
   $color-config: mat.get-color-config($config-or-theme);

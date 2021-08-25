@@ -1,0 +1,10 @@
+@use "./utils/responsive" as responsive;
+
+.cdk-overlay-pane.responsive-dialog-pane {
+  @include responsive.media-matcher('x-small') {
+    width: 100%;
+    height: 100%;
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+}
