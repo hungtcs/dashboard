@@ -1,9 +1,11 @@
-import { Controller, Post } from '@nestjs/common';
+import { DataSource } from './data-source.schema';
 import { DataSourcesService } from './data-sources.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Body, ClassSerializerInterceptor, Controller, Post, UseInterceptors } from '@nestjs/common';
 
 @ApiTags('DataSources')
 @Controller()
+@UseInterceptors(ClassSerializerInterceptor)
 export class DataSourcesController {
 
   constructor(
@@ -13,8 +15,9 @@ export class DataSourcesController {
 
   @Post('data-source')
   @ApiOperation({ summary: '创建数据源' })
-  public createDataSource() {
-
+  public async createDataSource(
+      @Body() dataSource: DataSource) {
+    return await this.dataSourcesService.createDataSource(dataSource);
   }
 
 }

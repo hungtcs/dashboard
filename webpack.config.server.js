@@ -1,6 +1,6 @@
 const path = require("path");
-const webpack = require("webpack");
 const nestConfig = require('./nest-cli.json');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 const production = process.env.NODE_ENV === 'production';
 
@@ -36,39 +36,15 @@ module.exports = function(options) {
       path: path.join(__dirname, './dist/server'),
       filename: 'main.js',
     },
-    // plugins: [
-    //   ...options.plugins,
-    //   new webpack.IgnorePlugin({
-    //     checkResource(resource) {
-    //       const lazyImports = [
-    //         '@nestjs/microservices',
-    //         'cache-manager',
-    //         'class-validator',
-    //         'class-transformer',
-    //         '@nestjs/websockets/socket-module',
-    //         '@nestjs/microservices/microservices-module',
-    //         'class-transformer/storage',
-    //         'fastify-static',
-    //         'fastify-swagger',
-    //       ];
-    //       if (!lazyImports.includes(resource)) {
-    //         return false;
-    //       }
-    //       try {
-    //         require.resolve(resource, {
-    //           paths: [process.cwd()],
-    //         });
-    //       } catch (err) {
-    //         return true;
-    //       }
-    //       return false;
-    //     },
-    //   }),
-    // ],
     resolve: {
       ...options.resolve,
       alias: getWebapckAlias(),
+      plugins: [
+        ...options.resolve.plugins,
+        new TsconfigPathsPlugin({
+          configFile: 'tsconfig.server.json'
+        }),
+      ],
     },
-    // externals: [],
   };
 };
