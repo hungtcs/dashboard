@@ -21,6 +21,10 @@ const routes: Routes = [
         path: 'charts',
         loadChildren: () => import('./charts/charts.module').then(module => module.ChartsModule),
       },
+      {
+        path: 'data-sources',
+        loadChildren: () => import('./data-sources/data-sources.module').then(module => module.DataSourcesModule),
+      },
     ],
   },
 ];

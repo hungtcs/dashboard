@@ -19,6 +19,11 @@ export class SidenavComponent implements OnInit {
       name: 'Charts',
       link: '/charts',
     },
+    {
+      icon: 'source',
+      name: 'Data Sources',
+      link: '/data-sources',
+    },
   ];
 
   constructor(

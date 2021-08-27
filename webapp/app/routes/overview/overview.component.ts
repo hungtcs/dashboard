@@ -34,7 +34,7 @@ export class OverviewComponent implements OnInit {
     minRows: 1,
     fixedRowHeight: 300,
 
-    minItemCols: 2,
+    minItemCols: 1,
     minItemRows: 1,
     maxItemCols: 4,
     maxItemRows: 2,
@@ -70,25 +70,25 @@ export class OverviewComponent implements OnInit {
     {
       x: 0,
       y: 0,
-      cols: 2,
+      cols: 1,
+      rows: 1,
+    },
+    {
+      x: 1,
+      y: 0,
+      cols: 3,
       rows: 1,
     },
     {
       x: 0,
       y: 1,
-      cols: 2,
+      cols: 3,
       rows: 1,
     },
     {
-      x: 0,
-      y: 2,
-      cols: 2,
-      rows: 1,
-    },
-    {
-      x: 0,
-      y: 3,
-      cols: 2,
+      x: 3,
+      y: 1,
+      cols: 1,
       rows: 1,
     },
   ];

@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const nestConfig = require('./nest-cli.json');
 
 const production = process.env.NODE_ENV === 'production';
@@ -28,7 +29,6 @@ function getWebapckAlias() {
  * @returns {import('webpack').Configuration}
  */
 module.exports = function(options) {
-  console.log();
   return {
     ...options,
     mode: production ? 'production' : 'development',
@@ -36,9 +36,39 @@ module.exports = function(options) {
       path: path.join(__dirname, './dist/server'),
       filename: 'main.js',
     },
+    // plugins: [
+    //   ...options.plugins,
+    //   new webpack.IgnorePlugin({
+    //     checkResource(resource) {
+    //       const lazyImports = [
+    //         '@nestjs/microservices',
+    //         'cache-manager',
+    //         'class-validator',
+    //         'class-transformer',
+    //         '@nestjs/websockets/socket-module',
+    //         '@nestjs/microservices/microservices-module',
+    //         'class-transformer/storage',
+    //         'fastify-static',
+    //         'fastify-swagger',
+    //       ];
+    //       if (!lazyImports.includes(resource)) {
+    //         return false;
+    //       }
+    //       try {
+    //         require.resolve(resource, {
+    //           paths: [process.cwd()],
+    //         });
+    //       } catch (err) {
+    //         return true;
+    //       }
+    //       return false;
+    //     },
+    //   }),
+    // ],
     resolve: {
       ...options.resolve,
       alias: getWebapckAlias(),
-    }
+    },
+    // externals: [],
   };
 };

@@ -1,0 +1,32 @@
+<header mat-dialog-title>
+  <h2>创建数据源</h2>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</header>
+<main mat-dialog-content>
+  <form>
+    <mat-form-field appearance="outline">
+      <mat-label>Connection String</mat-label>
+      <input
+        type="url"
+        matInput
+        cdkFocusInitial
+        name="connectionString"
+        autocomplete="url"
+        placeholder="mongodb://username:password@host:port/database"
+        [formControl]="connectionString"
+      />
+      <mat-error *ngIf="connectionString.invalid">{{ 'xxxxx' }}</mat-error>
+    </mat-form-field>
+  </form>
+</main>
+<footer mat-dialog-actions align="end">
+  <button
+    mat-button
+    color="primary"
+    [disabled]="connectionString.invalid"
+    (click)="onConfirmClick();">
+    确认
+  </button>
+</footer>

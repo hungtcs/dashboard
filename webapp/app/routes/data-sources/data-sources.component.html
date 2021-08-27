@@ -1,0 +1,25 @@
+
+<main>
+  <mat-card>
+    <mat-table [dataSource]="['XXX']">
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let item;">{{ item }}</mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="['name']"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: ['name'];"></mat-row>
+    </mat-table>
+    <!-- <table mat-table [dataSource]="['XXX']">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let item;">{{ item }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="['name']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['name'];"></tr>
+    </table> -->
+  </mat-card>
+</main>
+
+<button mat-fab class="add-button" (click)="openCreationDialog();">
+  <mat-icon>add</mat-icon>
+</button>

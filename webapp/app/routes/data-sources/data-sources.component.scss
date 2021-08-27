@@ -1,0 +1,21 @@
+@use "sass:map";
+@use "../../../styles/utils/responsive" as responsive;
+
+:host {
+  flex: 1 1 auto;
+  display: flex;
+  padding: 16px;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+main {
+  flex: 1 0 auto;
+  max-width: map.get(responsive.$sizes, 'medium');
+}
+
+.add-button {
+  right: 20px;
+  bottom: 20px;
+  position: fixed;
+}

@@ -28,7 +28,7 @@ import { MatDialogConfig, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/d
     AppComponent,
   ],
   declarations: [
-    AppComponent
+    AppComponent,
   ],
 })
 export class AppModule { }
