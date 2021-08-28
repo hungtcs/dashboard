@@ -16,8 +16,8 @@ export class SidenavComponent implements OnInit {
     },
     {
       icon: 'pie_chart',
-      name: 'Charts',
-      link: '/charts',
+      name: 'Visualizations',
+      link: '/visualizations',
     },
     {
       icon: 'source',

@@ -3,5 +3,11 @@
   "exclude": ["node_modules", "test", "dist", "**/*spec.ts"],
   "compilerOptions": {
     "outDir": "./dist/server/"
-  }
+  },
+  "files": [
+    "server/main.ts",
+  ],
+  "include": [
+    "server/**/*.d.ts"
+  ]
 }

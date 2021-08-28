@@ -1,33 +1,25 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '@webapp/shared/shared.module';
 import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DataSourcesComponent } from './data-sources.component';
+import { DataSourcesSharedModule } from './shared/shared.module';
 import { DataSourcesRoutingModule } from './data-sources-routing.module';
-import { DataSourceCreationDialogComponent } from './data-source-creation-dialog/data-source-creation-dialog.component';
 
 @NgModule({
   imports: [
-    CommonModule,
-    MatIconModule,
+    SharedModule,
     MatCardModule,
     MatTableModule,
-    MatInputModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatFormFieldModule,
+    MatCheckboxModule,
     ReactiveFormsModule,
+    DataSourcesSharedModule,
     DataSourcesRoutingModule,
   ],
   declarations: [
     DataSourcesComponent,
-    DataSourceCreationDialogComponent,
   ],
 })
 export class DataSourcesModule { }

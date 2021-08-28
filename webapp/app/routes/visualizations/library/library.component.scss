@@ -7,7 +7,7 @@
   box-sizing: border-box;
 }
 
-@for $index from 0 to 32 {
+@for $index from 0 to 9 {
   .temp-#{ $index } {
     flex: 1 1 auto;
     height: 100%;

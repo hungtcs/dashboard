@@ -18,8 +18,8 @@ const routes: Routes = [
         loadChildren: () => import('./overview/overview.module').then(module => module.OverviewModule),
       },
       {
-        path: 'charts',
-        loadChildren: () => import('./charts/charts.module').then(module => module.ChartsModule),
+        path: 'visualizations',
+        loadChildren: () => import('./visualizations/visualizations.module').then(module => module.VisualizationsModule),
       },
       {
         path: 'data-sources',

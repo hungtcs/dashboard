@@ -1,4 +1,4 @@
-import { Type } from "class-transformer";
+import { Transform, Type } from "class-transformer";
 import { ObjectId } from "mongodb";
 import { ApiProperty } from "@nestjs/swagger";
 import { SchemaOptions } from "mongoose";
@@ -24,6 +24,7 @@ export class BaseSchema {
 
   @Type(() => ObjectId)
   @Exclude({ toPlainOnly: true })
+  @Transform((params) => params.obj._id, { toClassOnly: true })
   public _id?: ObjectId;
 
   @Exclude({ toPlainOnly: true })

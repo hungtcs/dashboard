@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-chart-types-dialog',
-  templateUrl: './chart-types-dialog.component.html',
-  styleUrls: ['./chart-types-dialog.component.scss']
+  selector: 'app-visualization-types-dialog',
+  templateUrl: './visualization-types-dialog.component.html',
+  styleUrls: ['./visualization-types-dialog.component.scss']
 })
-export class ChartTypesDialogComponent implements OnInit {
+export class VisualizationTypesDialogComponent implements OnInit {
 
   public chartTypes = [
     {
-      code: 'chart',
+      code: 'charts',
       icon: 'insert_chart_outlined',
       name: 'Charts',
       description: '柱状图、折线图等'
@@ -30,7 +30,7 @@ export class ChartTypesDialogComponent implements OnInit {
   ];
 
   constructor(
-      private readonly matDialogRef: MatDialogRef<ChartTypesDialogComponent, any | undefined>) {
+      private readonly matDialogRef: MatDialogRef<VisualizationTypesDialogComponent, any | undefined>) {
 
   }
 

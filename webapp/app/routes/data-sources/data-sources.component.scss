@@ -10,8 +10,26 @@
 }
 
 main {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   max-width: map.get(responsive.$sizes, 'medium');
+}
+
+table {
+  width: 100%;
+  .mat-header-cell {
+    white-space: nowrap;
+  }
+  .mat-column-select {
+    width: 32px;
+  }
+  .mat-column-position {
+    width: 64px;
+    text-align: center;
+  }
+  .mat-column-name {
+    max-width: 320px;
+    padding-right: 16px;
+  }
 }
 
 .add-button {

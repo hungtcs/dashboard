@@ -4,6 +4,7 @@ import { Component, ElementRef, NgZone, OnInit, Renderer2, ViewChild } from '@an
 import { CompactType, DisplayGrid, GridsterComponent, GridsterConfig, GridsterItem, GridType } from 'angular-gridster2';
 import { debounceTime, interval, Subject, switchMap, tap, timer } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { VisualizationsService } from '@webapp/routes/visualizations/shared';
 
 @Component({
   selector: 'app-overview',
@@ -95,7 +96,8 @@ export class OverviewComponent implements OnInit {
 
   constructor(
       private readonly renderer: Renderer2,
-      private readonly elementRef: ElementRef<HTMLElement>) {
+      private readonly elementRef: ElementRef<HTMLElement>,
+      private readonly visualizationsService: VisualizationsService) {
 
   }
 
@@ -113,6 +115,11 @@ export class OverviewComponent implements OnInit {
           this.renderer.setStyle(this.elementRef.nativeElement, 'height', `auto`);
         });
       }))
+      .subscribe();
+
+
+    this.visualizationsService.getVisualizations()
+      .pipe(tap(a => console.log(a)))
       .subscribe();
   }
 
