@@ -1,0 +1,38 @@
+
+:host {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+mat-drawer-container {
+  flex: 1 1 auto;
+  display: flex;
+  overflow: initial;
+  flex-flow: column nowrap;
+  > mat-drawer {
+    overflow: initial;
+    ::ng-deep {
+      > .mat-drawer-inner-container {
+        overflow: initial;
+      }
+    }
+    app-visualizations-pool {
+      top: 64px;
+      width: 220px;
+      height: calc(100vh - 64px);
+      position: sticky;
+      overflow-y: auto;
+    }
+  }
+  > mat-drawer-content {
+    flex: 1 1 auto;
+    display: flex;
+    overflow: initial;
+    flex-flow: column nowrap;
+  }
+}
+
+app-customizable-dashboard {
+  flex: 1 1 auto;
+}

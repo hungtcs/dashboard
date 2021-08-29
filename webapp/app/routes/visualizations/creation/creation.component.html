@@ -1,4 +1,13 @@
 
+<ng-container *appHeaderExtra>
+  <button
+    mat-icon-button
+    [disabled]="chartsOptionGroup.invalid"
+    matTooltip="保存">
+    <mat-icon>save</mat-icon>
+  </button>
+</ng-container>
+
 <ng-container *ngIf="dataSource === null">
   <section class="data-source-selection">
     <mat-card>
@@ -9,7 +18,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Favorite food</mat-label>
           <mat-select [formControl]="dataSourceControl">
-            <mat-option *ngFor="let item of dataSources;" [value]="item.id">
+            <mat-option *ngFor="let item of dataSources;" [value]="item">
               {{ item.name }}
             </mat-option>
           </mat-select>

@@ -8,13 +8,17 @@
         <mat-icon>menu</mat-icon>
       </button>
       <h2>
-        <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
-        <span>{{ title }}</span>
+        <ng-container *ngIf="headerTitle !== null">
+          <ng-container *ngTemplateOutlet="headerTitle"></ng-container>
+        </ng-container>
+        <!-- <mat-icon *ngIf="icon">{{ icon }}</mat-icon>
+        <span>{{ title }}</span> -->
       </h2>
-      <button mat-icon-button>
-        <mat-icon>fullscreen</mat-icon>
-        <!-- <mat-icon>fullscreen_exit</mat-icon> -->
-      </button>
+      <div class="header-extra">
+        <ng-container *ngIf="headerExtra !== null">
+          <ng-container *ngTemplateOutlet="headerExtra"></ng-container>
+        </ng-container>
+      </div>
     </mat-toolbar>
     <main>
       <router-outlet #outlet (activate)="onRouterOutletActivate();"></router-outlet>

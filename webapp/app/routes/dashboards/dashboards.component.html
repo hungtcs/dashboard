@@ -1,0 +1,48 @@
+
+<ng-container *appHeaderTitle>
+  <mat-icon>dashboard</mat-icon>
+  <button mat-button [disabled]="currentDashboardEditing" [matMenuTriggerFor]="dashboardsSwitchMenu">
+    <span>{{ currentDashboard?.name }}</span>
+    <mat-icon>arrow_drop_down</mat-icon>
+    <mat-menu #dashboardsSwitchMenu="matMenu">
+      <ng-container *ngFor="let dashboard of dashboards;">
+        <button mat-menu-item [disabled]="dashboard.id === currentDashboard?.id">{{ dashboard.name }}</button>
+      </ng-container>
+    </mat-menu>
+  </button>
+</ng-container>
+
+<ng-container *appHeaderExtra>
+  <button
+    *ngIf="currentDashboardEditing"
+    mat-icon-button
+    (click)="onSaveDashboard();">
+    <mat-icon>done</mat-icon>
+  </button>
+
+  <ng-container *ngIf="!currentDashboardEditing">
+    <button mat-icon-button [matMenuTriggerFor]="moreActionsMenu">
+      <mat-icon>more_vert</mat-icon>
+      <mat-menu #moreActionsMenu="matMenu">
+        <button mat-menu-item (click)="customizableDashboard.startEditing();">
+          <mat-icon>dashboard_customize</mat-icon>
+          <span>编辑布局</span>
+        </button>
+      </mat-menu>
+    </button>
+  </ng-container>
+</ng-container>
+
+<mat-drawer-container>
+  <mat-drawer mode="side" [opened]="currentDashboardEditing">
+    <app-visualizations-pool
+      (visualizationDragStart)="onVisualizationDragStart($event);">
+    </app-visualizations-pool>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-customizable-dashboard
+      #customizableDashboard="appCustomizableDashboard"
+      [widgets]="widgets">
+    </app-customizable-dashboard>
+  </mat-drawer-content>
+</mat-drawer-container>

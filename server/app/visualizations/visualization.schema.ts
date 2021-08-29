@@ -1,7 +1,10 @@
 import { BaseSchema } from "@server/shared/schemas";
+import { DataSource } from '../data-sources/data-source.schema';
 import { ApiProperty } from "@nestjs/swagger";
-import { IsArray, IsBoolean, IsNotEmpty, IsObject, IsString } from "class-validator";
+import { Schema as MongooseSchema } from 'mongoose';
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { IsArray, IsBoolean, IsNotEmpty, IsObject, IsString } from "class-validator";
+import { Type } from "class-transformer";
 
 @Schema()
 export class VisualizationDataQuery {
@@ -65,6 +68,12 @@ export class Visualization extends BaseSchema {
   @IsNotEmpty()
   @ApiProperty({ description: '名称' })
   public name!: string;
+
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: DataSource.name })
+  @IsObject()
+  @ApiProperty({ description: '数据源' })
+  @Type(() => DataSource)
+  public dataSource!: DataSource;
 
   @Prop({ type: VisualizationDataQuerySchema })
   @IsObject()

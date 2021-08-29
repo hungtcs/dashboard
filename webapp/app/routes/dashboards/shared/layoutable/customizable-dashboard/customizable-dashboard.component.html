@@ -1,0 +1,7 @@
+<gridster #gridster [options]="gridsterOptions" [class.gridster--editing]="editing">
+  <ng-container *ngFor="let widget of widgets;">
+    <gridster-item [item]="widget">
+      <app-visualization-wrapper [visualization]="widget.visualization"></app-visualization-wrapper>
+    </gridster-item>
+  </ng-container>
+</gridster>

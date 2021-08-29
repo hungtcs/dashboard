@@ -14,13 +14,16 @@ mat-toolbar {
   z-index: 10;
   position: sticky;
   > h2 {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
     margin: 0px 0px 0px 16px;
     display: flex;
     align-items: center;
-    > span {
-      margin: 0px 0px 0px 8px;
-    }
+  }
+  > .header-extra {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 }
 

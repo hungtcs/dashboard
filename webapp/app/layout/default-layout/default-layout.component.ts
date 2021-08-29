@@ -1,26 +1,40 @@
 import { RouterOutlet } from '@angular/router';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { LayoutService } from '../shared/layout.service';
+import { ChangeDetectorRef, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-default-layout',
+  styleUrls: ['./default-layout.component.scss'],
   templateUrl: './default-layout.component.html',
-  styleUrls: ['./default-layout.component.scss']
 })
 export class DefaultLayoutComponent implements OnInit {
   public icon?: string;
   public title: string = '';
   public sidenavOpened: boolean = false;
 
+  public headerTitle: null | TemplateRef<void> = null;
+  public headerExtra: null | TemplateRef<void> = null;
+
   @ViewChild('outlet', { static: true, read: RouterOutlet })
   public outlet!: RouterOutlet;
 
-
-  constructor() {
+  constructor(
+      private readonly layoutService: LayoutService,
+      private readonly changeDetectorRef: ChangeDetectorRef) {
 
   }
 
   public ngOnInit(): void {
+    this.layoutService.headerTitle
+      .pipe(tap(template => this.headerTitle = template))
+      .pipe(tap(() => this.changeDetectorRef.detectChanges()))
+      .subscribe();
 
+    this.layoutService.headerExtra
+      .pipe(tap(template => this.headerExtra = template))
+      .pipe(tap(() => this.changeDetectorRef.detectChanges()))
+      .subscribe();
   }
 
   public onRouterOutletActivate() {

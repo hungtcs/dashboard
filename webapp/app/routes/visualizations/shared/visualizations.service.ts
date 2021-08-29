@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Visualization } from './interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,10 @@ export class VisualizationsService {
 
   }
 
+  public getVisualization(id: string) {
+    return this.http.get<Visualization>(`/api/visualization/${ id }`);
+  }
+
   public createVisualization(data: any) {
     return this.http.post<any>(
       `/api/visualization`,
@@ -18,7 +23,7 @@ export class VisualizationsService {
   }
 
   public getVisualizations() {
-    return this.http.get<Array<any>>(
+    return this.http.get<Array<Visualization>>(
       `/api/visualizations`
     );
   }

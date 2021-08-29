@@ -1,14 +1,12 @@
-import { map, tap } from 'rxjs';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { DataSource, DataSourcesService } from '@webapp/routes/data-sources/shared/index';
-import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 import * as echarts from 'echarts/core';
+import { map, tap } from 'rxjs';
 import { LineChart } from 'echarts/charts';
 import { CanvasRenderer } from 'echarts/renderers';
-import { TooltipComponent, GridComponent } from 'echarts/components';
-import { MatDialog } from '@angular/material/dialog';
-import { VisualizationSaveDialogComponent } from '../visualization-save-dialog/visualization-save-dialog.component';
 import { VisualizationsService } from '../shared/visualizations.service';
+import { DataSource, DataSourcesService } from '@webapp/routes/data-sources/shared/index';
+import { TooltipComponent, GridComponent } from 'echarts/components';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, Validators } from '@angular/forms';
 
 echarts.use([TooltipComponent, GridComponent, LineChart, CanvasRenderer]);
 
@@ -64,7 +62,6 @@ export class CreationComponent implements OnInit {
   public chartsPreviewInstance?: echarts.ECharts;
 
   constructor(
-      private readonly dialog: MatDialog,
       private readonly formBuilder: FormBuilder,
       private readonly dataSourcesService: DataSourcesService,
       private readonly visualizationsService: VisualizationsService,) {
@@ -76,7 +73,7 @@ export class CreationComponent implements OnInit {
     this.dataSourcesService.getDataSources()
       .pipe(map(response => response.data))
       .pipe(tap(data => this.dataSources = data))
-      .pipe(tap(data => this.dataSource = data[0]))
+      // .pipe(tap(data => this.dataSource = data[0]))
       .subscribe();
 
     this.chartsOptionGroup.patchValue({
@@ -156,8 +153,11 @@ export class CreationComponent implements OnInit {
       return;
     }
     const options = this.chartsOptionGroup.value;
-    this.visualizationsService.createVisualization({ ...options, name: '温度' })
-      .subscribe();
+    this.visualizationsService.createVisualization({
+      ...options,
+      name: '温度',
+      dataSource: this.dataSource.id,
+    }).subscribe();
     // const dialogRef = this.dialog.open(
     //   VisualizationSaveDialogComponent,
     //   {

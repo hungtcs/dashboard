@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { LayoutModule } from '../layout/layout.module';
 import { RouterModule, Routes } from '@angular/router';
 import { DefaultLayoutComponent } from '../layout/default-layout/default-layout.component';
 
@@ -14,8 +13,12 @@ const routes: Routes = [
         redirectTo: 'dashboard',
       },
       {
-        path: 'dashboard',
+        path: 'overview',
         loadChildren: () => import('./overview/overview.module').then(module => module.OverviewModule),
+      },
+      {
+        path: 'dashboard',
+        loadChildren: () => import('./dashboards/dashboards.module').then(module => module.DashboardsModule),
       },
       {
         path: 'visualizations',
@@ -31,7 +34,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    LayoutModule,
     RouterModule.forRoot(routes),
   ],
   exports: [

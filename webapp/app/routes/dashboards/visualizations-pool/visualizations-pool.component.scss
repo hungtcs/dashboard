@@ -1,0 +1,23 @@
+
+:host {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+header {
+  flex: 0 0 auto;
+  padding: 16px;
+}
+
+main {
+  flex: 1 1 auto;
+  padding: 16px;
+  > div {
+    padding: 16px;
+    border-radius: 8px;
+    background-color: lightblue;
+    & + div {
+      margin-top: 16px;
+    }
+  }
+}

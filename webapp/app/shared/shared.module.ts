@@ -7,7 +7,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { LayoutSharedModule } from '@webapp/layout/shared';
+import { ObserversModule } from './observers/observers.module';
 
 const MAT_MODULES = [
   MatIconModule,
@@ -16,6 +19,7 @@ const MAT_MODULES = [
   MatSelectModule,
   MatDialogModule,
   MatSidenavModule,
+  MatTooltipModule,
   MatFormFieldModule,
 ];
 
@@ -23,11 +27,15 @@ const MAT_MODULES = [
   imports: [
     CommonModule,
     RouterModule,
+    ObserversModule,
+    LayoutSharedModule,
     ...MAT_MODULES,
   ],
   exports: [
     CommonModule,
     RouterModule,
+    ObserversModule,
+    LayoutSharedModule,
     ...MAT_MODULES,
   ],
 })

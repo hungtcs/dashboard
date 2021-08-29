@@ -1,0 +1,40 @@
+@use "~@angular/material" as mat;
+
+:host {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+gridster {
+  flex: 1 1 auto;
+  background-color: transparent;
+  > gridster-item {
+    @include mat.elevation(2);
+    overflow: visible;
+    border-radius: 8px;
+    &.gridster-item-moving {
+      z-index: 2 !important;
+    }
+  }
+  ::ng-deep {
+    > gridster-preview {
+      box-sizing: border-box;
+      border-radius: 8px;
+      border: 1px dashed gray;
+    }
+  }
+  &.gridster--editing {
+    user-select: none;
+    ::ng-deep {
+      app-visualization-wrapper {
+        cursor: grab;
+      }
+      app-visualization-wrapper > *,
+      app-visualization-wrapper > header {
+        user-select: none;
+        pointer-events: none;
+      }
+    }
+  }
+}

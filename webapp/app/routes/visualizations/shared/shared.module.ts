@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
+import { VisualizationRenderModule } from './visualization-render/visualization-render.module';
 
 @NgModule({
-  declarations: [],
   imports: [
-    CommonModule
-  ]
+    VisualizationRenderModule,
+  ],
+  exports: [
+    VisualizationRenderModule,
+  ],
 })
-export class SharedModule { }
+export class VisualizationsSharedModule {
+
+}

@@ -1,0 +1,11 @@
+<header>
+  {{ visualization?.name }}
+</header>
+<main>
+  <ng-container *ngIf="visualization === null">
+    Loading
+  </ng-container>
+  <ng-container *ngIf="visualization !== null">
+    <app-visualization-render [visualization]="visualization"></app-visualization-render>
+  </ng-container>
+</main>

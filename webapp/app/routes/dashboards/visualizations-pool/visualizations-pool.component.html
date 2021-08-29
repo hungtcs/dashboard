@@ -1,0 +1,11 @@
+<header>
+  可视化图表
+</header>
+
+<main>
+  <ng-container *ngFor="let visualization of visualizations;">
+    <div [draggable]="true" (dragstart)="onDragStart($event, visualization);">
+      {{ visualization.name  }}
+    </div>
+  </ng-container>
+</main>
