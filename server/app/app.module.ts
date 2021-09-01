@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { WebappModule } from './webapp/webapp.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { DashboardsModule } from './dashboards/dashboards.module';
+import { ExtensionsModule } from './extensions/extensions.module';
 import { DataSourcesModule } from './data-sources/data-sources.module';
 import { VisualizationsModule } from './visualizations/visualizations.module';
 
@@ -9,6 +10,7 @@ import { VisualizationsModule } from './visualizations/visualizations.module';
   imports: [
     WebappModule,
     DashboardsModule,
+    ExtensionsModule,
     DataSourcesModule,
     VisualizationsModule,
     MongooseModule.forRoot(

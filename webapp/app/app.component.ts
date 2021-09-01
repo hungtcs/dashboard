@@ -1,3 +1,4 @@
+import 'systemjs';
 import { tap } from 'rxjs';
 import { Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
@@ -33,6 +34,20 @@ export class AppComponent implements OnInit {
         }
       }))
       .subscribe();
+
+    (async function() {
+      const response = await fetch(`/api/extensions`);
+      const extensions: Array<any> = await response.json();
+
+      extensions.forEach(extension => {
+        System.import(`/api/extensions/${ extension.id }/entrypoint`)
+          .then(extension => {
+            const Class = extension.default;
+            new Class();
+          });
+      });
+
+    }());
   }
 
 }

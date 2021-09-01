@@ -1,0 +1,5 @@
+{
+  "id": "current-time",
+  "name": "Current Time",
+  "entrypoint": "./index.js"
+}
