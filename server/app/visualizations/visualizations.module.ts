@@ -7,7 +7,7 @@ import { Visualization, VisualizationSchema } from './visualization.schema';
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: Visualization.name, schema: VisualizationSchema },
+      { name: Visualization.COLLECTION_NAME, schema: VisualizationSchema },
     ])
   ],
   providers: [

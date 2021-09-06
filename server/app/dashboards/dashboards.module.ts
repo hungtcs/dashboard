@@ -7,7 +7,7 @@ import { Dashboard, DashboardSchema } from './dashboard.schema';
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: Dashboard.name, schema: DashboardSchema }
+      { name: Dashboard.COLLECTION_NAME, schema: DashboardSchema }
     ]),
   ],
   providers: [

@@ -32,7 +32,7 @@ export class Widget {
   @ApiProperty({ description: '所占行' })
   public rows!: number;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: Visualization.name })
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: Visualization.COLLECTION_NAME })
   @IsObject()
   @ApiProperty({ description: '可视化' })
   public visualization!: Visualization;
@@ -41,8 +41,12 @@ export class Widget {
 
 const WidgetSchema = SchemaFactory.createForClass(Widget)
 
-@Schema(BaseSchema.SchemaOptions)
+@Schema({
+  ...BaseSchema.SchemaOptions,
+  collection: Dashboard.COLLECTION_NAME,
+})
 export class Dashboard extends BaseSchema {
+  public static COLLECTION_NAME = 'dashboards';
 
   @Prop()
   @IsString()

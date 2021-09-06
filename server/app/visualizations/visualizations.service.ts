@@ -12,7 +12,7 @@ import { Visualization, VisualizationDocument } from './visualization.schema';
 export class VisualizationsService {
 
   constructor(
-      @InjectModel(Visualization.name) private readonly VisualizationModel: Model<VisualizationDocument>,) {
+      @InjectModel(Visualization.COLLECTION_NAME) private readonly VisualizationModel: Model<VisualizationDocument>,) {
 
   }
 

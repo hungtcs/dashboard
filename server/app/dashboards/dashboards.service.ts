@@ -12,7 +12,7 @@ import { ObjectId } from 'mongodb';
 export class DashboardsService {
 
   constructor(
-      @InjectModel(Dashboard.name) private readonly DashboardModel: Model<DashboardDocument>) {
+      @InjectModel(Dashboard.COLLECTION_NAME) private readonly DashboardModel: Model<DashboardDocument>) {
 
   }
 

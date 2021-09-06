@@ -6,9 +6,10 @@ import { IsString } from 'class-validator';
 
 @Schema({
   ...BaseSchema.SchemaOptions,
-  collection: 'dataSources'
+  collection: DataSource.COLLECTION_NAME,
 })
 export class DataSource extends BaseSchema {
+  public static COLLECTION_NAME = 'dataSources';
 
   @Prop({ unique: true })
   @IsString()

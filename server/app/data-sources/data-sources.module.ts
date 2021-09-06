@@ -7,7 +7,7 @@ import { DataSource, DataSourceSchema } from './data-source.schema';
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: DataSource.name, schema: DataSourceSchema },
+      { name: DataSource.COLLECTION_NAME, schema: DataSourceSchema },
     ]),
   ],
   providers: [

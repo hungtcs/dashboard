@@ -60,8 +60,12 @@ export class VisualizationAxis {
 
 const VisualizationAxisSchema = SchemaFactory.createForClass(VisualizationAxis);
 
-@Schema(BaseSchema.SchemaOptions)
+@Schema({
+  ...BaseSchema.SchemaOptions,
+  collection: Visualization.COLLECTION_NAME,
+})
 export class Visualization extends BaseSchema {
+  public static COLLECTION_NAME = 'visualizations';
 
   @Prop({ unique: true })
   @IsString()
@@ -69,7 +73,7 @@ export class Visualization extends BaseSchema {
   @ApiProperty({ description: '名称' })
   public name!: string;
 
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: DataSource.name })
+  @Prop({ type: MongooseSchema.Types.ObjectId, ref: DataSource.COLLECTION_NAME })
   @IsObject()
   @ApiProperty({ description: '数据源' })
   @Type(() => DataSource)

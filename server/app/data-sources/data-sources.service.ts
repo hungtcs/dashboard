@@ -12,7 +12,7 @@ import { MongoClient, ObjectId } from 'mongodb';
 export class DataSourcesService {
 
   constructor(
-      @InjectModel(DataSource.name) private readonly DataSourceModel: Model<DataSourceDocument>,) {
+      @InjectModel(DataSource.COLLECTION_NAME) private readonly DataSourceModel: Model<DataSourceDocument>,) {
 
   }
 
