@@ -1,6 +1,6 @@
 import { BaseSchema } from '@server/shared/schemas';
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { Schema as MongooseSchema, Document } from 'mongoose';
+import { Document } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
 

@@ -25,7 +25,7 @@ export class VisualizationsService {
     const doc = await this.VisualizationModel.findById(id)
       .populate('dataSource')
       .exec();
-    if(doc === null) {
+    if (doc === null) {
       return null;
     }
     return plainToClass(Visualization, doc.toObject());

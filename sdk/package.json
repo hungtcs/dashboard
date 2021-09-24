@@ -1,0 +1,8 @@
+{
+  "name": "sdk",
+  "main": "index.js",
+  "author": "鸿则 <hungtcs@outlook.com> (https://github.com/hungtcs)",
+  "license": "MIT",
+  "version": "0.0.1",
+  "description": ""
+}

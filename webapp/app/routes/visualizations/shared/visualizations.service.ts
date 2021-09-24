@@ -7,7 +7,8 @@ import { Visualization } from './interfaces';
 })
 export class VisualizationsService {
 
-  constructor(private readonly http: HttpClient) {
+  constructor(
+      private readonly http: HttpClient) {
 
   }
 

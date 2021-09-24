@@ -1,27 +1,137 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "project": "tsconfig.json",
-    "sourceType": "module"
+  "root": true,
+  "rules": {
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/keyword-spacing": [
+      "error",
+      {
+        "after": true
+      }
+    ],
+    "@typescript-eslint/no-empty-function": [
+      "warn",
+      {
+        "allow": [
+          "constructors",
+          "decoratedFunctions"
+        ]
+      }
+    ],
+    "@typescript-eslint/explicit-member-accessibility": [
+      "warn",
+      {
+        "accessibility": "explicit",
+        "overrides": {
+          "constructors": "no-public"
+        }
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   },
+  "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint/eslint-plugin"
   ],
   "extends": [
     "plugin:@typescript-eslint/recommended"
   ],
-  "root": true,
-  "env": {
-    "node": true,
-    "jest": true
-  },
-  "ignorePatterns": [
-    ".eslintrc.js"
-  ],
-  "rules": {
-    "@typescript-eslint/interface-name-prefix": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-explicit-any": "off"
-  }
+  "overrides": [
+    {
+      "env": {
+        "node": true,
+        "jest": true
+      },
+      "files": [
+        "server/**/*.ts"
+      ],
+      "rules": {
+        "@typescript-eslint/indent": [
+          "error",
+          2,
+          {
+            "ignoredNodes": ["Decorator"],
+            "FunctionDeclaration": {
+              "parameters": 2
+            },
+            "FunctionExpression": {
+              "parameters": 2
+            }
+          }
+        ]
+      },
+      "parserOptions": {
+        "project": "tsconfig.server.json",
+        "sourceType": "module"
+      }
+    },
+    {
+      "files": [
+        "webapp/**/*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.webapp.json"
+        ],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@typescript-eslint/indent": [
+          "error",
+          2,
+          {
+            "FunctionDeclaration": {
+              "parameters": 2
+            },
+            "FunctionExpression": {
+              "parameters": 2
+            }
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/no-input-rename": "off",
+        "@angular-eslint/no-output-rename": "off",
+        "@angular-eslint/use-lifecycle-interface": "error",
+        "@angular-eslint/no-empty-lifecycle-method": "off"
+      }
+    },
+    {
+      "files": [
+        "webapp/**/*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {}
+    }
+  ]
 }

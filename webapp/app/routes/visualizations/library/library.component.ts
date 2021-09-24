@@ -1,6 +1,6 @@
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { VisualizationTypesDialogService } from '../visualization-types-dialog/visualization-types-dialog.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { VisualizationTypesDialogService } from '../visualization-types-dialog/v
   styleUrls: ['./library.component.scss'],
   templateUrl: './library.component.html',
 })
-export class LibraryComponent implements OnInit {
+export class LibraryComponent {
 
   public charts = Array.from({ length: 9 }).fill(0);
 
@@ -18,14 +18,11 @@ export class LibraryComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-  }
-
   public openChartTypesDialog() {
     const dialogRef = this.visualizationTypesDialogService.open();
     dialogRef.afterClosed()
       .pipe(tap(chartType => {
-        if(chartType !== undefined) {
+        if (chartType !== undefined) {
           console.log(chartType);
           this.router.navigate(['/visualizations/create', chartType.code]);
         }

@@ -1,10 +1,7 @@
-import * as echarts from 'echarts';
-import moment from 'moment';
-import { Component, ElementRef, NgZone, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { CompactType, DisplayGrid, GridsterComponent, GridsterConfig, GridsterItem, GridType } from 'angular-gridster2';
-import { debounceTime, interval, Subject, switchMap, tap, timer } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Subject, tap } from 'rxjs';
 import { VisualizationsService } from '@webapp/routes/visualizations/shared';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { CompactType, DisplayGrid, GridsterComponent, GridsterConfig, GridsterItem, GridType } from 'angular-gridster2';
 
 @Component({
   selector: 'app-overview',
@@ -59,7 +56,7 @@ export class OverviewComponent implements OnInit {
     initCallback: () => {
       console.log('initCallback');
     },
-    itemInitCallback: (item, itemComponent) => {
+    itemInitCallback: () => {
       // console.log('itemInitCallback', { item, itemComponent });
     },
     gridSizeChangedCallback: () => {
@@ -101,7 +98,7 @@ export class OverviewComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     const resizeObserver = new ResizeObserver(() => this.containerResize.next());
     resizeObserver.observe(this.elementRef.nativeElement);
 

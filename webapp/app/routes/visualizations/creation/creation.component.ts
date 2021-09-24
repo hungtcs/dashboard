@@ -105,20 +105,20 @@ export class CreationComponent implements OnInit {
   }
 
   public applyChartsOption() {
-    if(this.dataSource === null) {
+    if (this.dataSource === null) {
       return;
     }
-    if(!this.chartsPreviewContainer) {
+    if (!this.chartsPreviewContainer) {
       return;
     }
-    if(!this.chartsPreviewInstance) {
+    if (!this.chartsPreviewInstance) {
       this.chartsPreviewInstance = echarts.init(this.chartsPreviewContainer.nativeElement);
     }
 
     const options = this.chartsOptionGroup.value;
     const { dataQuery, axis, series } = options;
-    const { enable, xAxis, yAxis } = axis;
-    const { type, collection, query } = dataQuery;
+    const { xAxis, yAxis } = axis;
+    const { type, collection } = dataQuery;
 
     this.dataSourcesService.queryDataFromDataSource(type, collection, this.dataSource.id)
       .pipe(tap(data => {
@@ -149,7 +149,7 @@ export class CreationComponent implements OnInit {
   }
 
   public saveVisualization() {
-    if(this.dataSource === null) {
+    if (this.dataSource === null) {
       return;
     }
     const options = this.chartsOptionGroup.value;

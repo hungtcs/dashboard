@@ -17,12 +17,18 @@
     "start:server:dev": "nest start --debug --watch",
     "build:webapp": "ng build",
     "start:webapp:dev": "ng serve",
+    "lint": "npm run lint:server && npm run lint:webapp",
+    "lint:server": "eslint --config .eslintrc \"server/**/*.ts\"",
+    "lint:webapp": "ng lint",
     "ng": "ng",
     "nest": "nest"
   },
   "engines": {
     "node": ">=v14.17"
   },
+  "workspaces": [
+    "sdk"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hungtcs/dashboard.git"
@@ -48,6 +54,11 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.2",
+    "@angular-eslint/builder": "12.5.0",
+    "@angular-eslint/eslint-plugin": "12.5.0",
+    "@angular-eslint/eslint-plugin-template": "12.5.0",
+    "@angular-eslint/schematics": "12.5.0",
+    "@angular-eslint/template-parser": "12.5.0",
     "@angular/animations": "~12.2.0",
     "@angular/cdk": "^12.2.2",
     "@angular/cli": "~12.2.2",
@@ -69,12 +80,12 @@
     "@types/mongodb": "^4.0.7",
     "@types/node": "^16.0.0",
     "@types/systemjs": "^6.1.1",
-    "@typescript-eslint/eslint-plugin": "^4.28.2",
-    "@typescript-eslint/parser": "^4.28.2",
+    "@typescript-eslint/eslint-plugin": "4.28.2",
+    "@typescript-eslint/parser": "4.28.2",
     "angular-gridster2": "^12.1.0",
     "concurrently": "^6.2.1",
     "echarts": "^5.1.2",
-    "eslint": "^7.30.0",
+    "eslint": "^7.26.0",
     "systemjs": "^6.10.3",
     "ts-loader": "^9.2.3",
     "ts-node": "^10.0.0",

@@ -1,12 +1,12 @@
 import { MatSidenav } from '@angular/material/sidenav';
-import { Component, OnInit, Optional } from '@angular/core';
+import { Component, Optional } from '@angular/core';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent {
 
   public navItems: Array<any> = [
     {
@@ -31,12 +31,8 @@ export class SidenavComponent implements OnInit {
 
   }
 
-  public ngOnInit(): void {
-
-  }
-
   public onNavItemClick() {
-    if(this.sidenav && ['over', 'push'].includes(this.sidenav.mode)) {
+    if (this.sidenav && ['over', 'push'].includes(this.sidenav.mode)) {
       this.sidenav.close();
     }
   }

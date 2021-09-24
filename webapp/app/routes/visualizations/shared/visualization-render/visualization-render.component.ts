@@ -32,8 +32,8 @@ export class VisualizationRenderComponent implements OnInit {
     this.chartsInstance = echarts.init(this.container.nativeElement);
 
     const { dataSource, dataQuery, axis, series } = this.visualization;
-    const { enable, xAxis, yAxis } = axis;
-    const { type, collection, query } = dataQuery;
+    const { xAxis, yAxis } = axis;
+    const { type, collection } = dataQuery;
 
     this.dataSourcesService.queryDataFromDataSource(type, collection, dataSource.id)
       .pipe(tap(data => {

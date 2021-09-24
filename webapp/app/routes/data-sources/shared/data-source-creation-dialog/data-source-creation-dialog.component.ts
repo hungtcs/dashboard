@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -7,7 +7,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./data-source-creation-dialog.component.scss'],
   templateUrl: './data-source-creation-dialog.component.html',
 })
-export class DataSourceCreationDialogComponent implements OnInit {
+export class DataSourceCreationDialogComponent {
   public connectionString = new FormControl(
     '',
     [
@@ -20,12 +20,8 @@ export class DataSourceCreationDialogComponent implements OnInit {
 
   }
 
-  public ngOnInit(): void {
-
-  }
-
   public onConfirmClick() {
-    if(this.connectionString.invalid || this.connectionString.pending) {
+    if (this.connectionString.invalid || this.connectionString.pending) {
       this.connectionString.markAsTouched();
       this.connectionString.updateValueAndValidity();
       return;

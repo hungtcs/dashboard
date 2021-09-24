@@ -1,5 +1,4 @@
 import { ObjectId } from 'mongodb';
-import { Visualization } from './visualization.schema';
 import { ObjectIdParam } from '@server/shared/decorators/index';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { VisualizationsService } from './visualizations.service';

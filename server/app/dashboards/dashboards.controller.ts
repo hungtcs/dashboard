@@ -1,7 +1,7 @@
 import { Dashboard } from './dashboard.schema';
 import { DashboardsService } from './dashboards.service';
 import { DashboardCreateObject, WidgetSaveObject } from './dashboard.dto';
-import { ApiBody, ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Body, ClassSerializerInterceptor, Controller, Get, Post, Put, UseInterceptors } from '@nestjs/common';
 import { ObjectIdParam } from '@server/shared/decorators';
 import { ObjectId } from 'mongodb';

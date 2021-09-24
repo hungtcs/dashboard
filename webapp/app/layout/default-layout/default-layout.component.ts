@@ -42,7 +42,7 @@ export class DefaultLayoutComponent implements OnInit {
   }
 
   private setTitle() {
-    if(this.outlet.isActivated) {
+    if (this.outlet.isActivated) {
       const { title, icon } = this.outlet.activatedRoute.snapshot.data ?? {};
       icon && (this.icon = icon);
       title && (this.title = title);

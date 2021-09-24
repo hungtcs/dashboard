@@ -9,6 +9,6 @@ export class CreateVisualizationObject extends OmitType(Visualization, ['dataSou
   @Prop()
   @IsString()
   @ApiProperty({ description: '数据源ID' })
-  dataSource!: string;
+  public dataSource!: string;
 
 }

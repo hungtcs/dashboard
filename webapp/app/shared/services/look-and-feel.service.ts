@@ -22,7 +22,7 @@ export class LookAndFeelService {
 
   private initColorMode() {
     let colorMode = window.localStorage.getItem(COLOR_MODE_STORAGE_KEY) as ColorMode | null;
-    if(colorMode !== null) {
+    if (colorMode !== null) {
       colorMode = colorMode === 'dark' ? 'dark' : 'light';
       this.colorMode.next(colorMode);
       window.localStorage.setItem(COLOR_MODE_STORAGE_KEY, colorMode);
@@ -39,17 +39,15 @@ export class LookAndFeelService {
   }
 
   private initCurrentBreakpoint() {
-    this.breakpointObserver.observe([
-      Breakpoints.XSmall,
-      Breakpoints.Small,
-      Breakpoints.Medium,
-      Breakpoints.Large,
-      Breakpoints.XLarge,
-    ])
-    .subscribe(result =>{
-      if(result.matches) {
+    this.breakpointObserver.observe(
+      [
+        Breakpoints.XSmall, Breakpoints.Small, Breakpoints.Medium,
+        Breakpoints.Large, Breakpoints.XLarge,
+      ]
+    ).subscribe(result =>{
+      if (result.matches) {
         const [query] = Object.entries(result.breakpoints).find(([_, value]) => value) ?? [null];
-        const [breakpoint] = Object.entries(Breakpoints).find(([key, _query]) => _query === query) ?? [null];
+        const [breakpoint] = Object.entries(Breakpoints).find(([_key, _query]) => _query === query) ?? [null];
         this.currentBreakpoint.next(breakpoint as keyof typeof Breakpoints);
       } else {
         this.currentBreakpoint.next(null);

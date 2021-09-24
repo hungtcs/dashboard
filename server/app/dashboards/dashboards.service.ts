@@ -33,7 +33,7 @@ export class DashboardsService {
 
   public async getDashboard(id: ObjectId) {
     const doc = await this.DashboardModel.findById(id);
-    if(doc === null) {
+    if (doc === null) {
       return null;
     }
     return plainToClass(Dashboard, doc.toObject());
@@ -43,7 +43,7 @@ export class DashboardsService {
     const doc = await this.DashboardModel
       .findById(id)
       .exec();
-    if(doc === null) {
+    if (doc === null) {
       return null;
     }
     return doc.toObject().widgets.map((widget: any) => {
@@ -56,7 +56,7 @@ export class DashboardsService {
 
   public async setDashboardWidgets(id: ObjectId, widgets: Array<WidgetSaveObject>) {
     const doc = await this.DashboardModel.findById(id);
-    if(doc === null) {
+    if (doc === null) {
       return null;
     }
     doc.widgets = widgets as any;

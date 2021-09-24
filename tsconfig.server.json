@@ -8,6 +8,7 @@
     "server/main.ts",
   ],
   "include": [
-    "server/**/*.d.ts"
+    "server/**/*.d.ts",
+    "server/environments/environment.prod.ts"
   ]
 }

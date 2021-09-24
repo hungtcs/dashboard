@@ -35,14 +35,14 @@ export class LayoutService {
 
   public useTemplate(slot: ElementType<typeof availableSlots>, template: TemplateRef<void>, useUntil?: Subject<void>) {
     const define = this.slotsMap.get(slot) ?? null;
-    if(define === null) {
+    if (define === null) {
       throw new Error('unknow slot');
     }
-    if(define.useUntilSubscription) {
+    if (define.useUntilSubscription) {
       define.useUntilSubscription.unsubscribe();
     }
     define.templateSubject.next(template);
-    if(useUntil) {
+    if (useUntil) {
       define.useUntilSubscription = useUntil.pipe(tap(() => define.templateSubject.next(null))).subscribe()
     } else {
       define.useUntilSubscription = null;
@@ -51,7 +51,7 @@ export class LayoutService {
 
   public getTemplateSubject(slotName: ElementType<typeof availableSlots>) {
     const slot = this.slotsMap.get(slotName) ?? null;
-    if(slot === null) {
+    if (slot === null) {
       throw new Error('');
     }
     return slot.templateSubject;

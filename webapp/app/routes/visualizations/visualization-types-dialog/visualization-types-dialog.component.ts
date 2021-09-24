@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
@@ -6,7 +6,7 @@ import { MatDialogRef } from '@angular/material/dialog';
   templateUrl: './visualization-types-dialog.component.html',
   styleUrls: ['./visualization-types-dialog.component.scss']
 })
-export class VisualizationTypesDialogComponent implements OnInit {
+export class VisualizationTypesDialogComponent {
 
   public chartTypes = [
     {
@@ -32,9 +32,6 @@ export class VisualizationTypesDialogComponent implements OnInit {
   constructor(
       private readonly matDialogRef: MatDialogRef<VisualizationTypesDialogComponent, any | undefined>) {
 
-  }
-
-  public ngOnInit(): void {
   }
 
   public onChartTypeClick(chartType: any) {

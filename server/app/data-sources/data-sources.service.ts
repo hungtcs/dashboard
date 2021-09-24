@@ -37,14 +37,14 @@ export class DataSourcesService {
 
   public async queryDataFromDataSource(type: string, collectionName: string, dataSourceId: string) {
     const dataSource = await this.DataSourceModel.findById(new ObjectId(dataSourceId));
-    if(dataSource === null) {
+    if (dataSource === null) {
       throw new Error('data source is null');
     }
     const client = new MongoClient(dataSource.connectionString);
     await client.connect();
     const db = client.db();
     const collection = db.collection(collectionName);
-    if(type === 'find') {
+    if (type === 'find') {
       return (await collection.find({}).limit(100).toArray())
         .map(item => {
           return {

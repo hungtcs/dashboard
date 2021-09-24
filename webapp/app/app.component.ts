@@ -27,27 +27,13 @@ export class AppComponent implements OnInit {
       .subscribe();
     this.lookAndFeelService.currentBreakpoint
       .pipe(tap(breakpoint => {
-        if(breakpoint !== null) {
+        if (breakpoint !== null) {
           this.document.documentElement.setAttribute('data-viewport', paramCase(breakpoint));
         } else {
           this.document.documentElement.removeAttribute('data-viewport');
         }
       }))
       .subscribe();
-
-    (async function() {
-      const response = await fetch(`/api/extensions`);
-      const extensions: Array<any> = await response.json();
-
-      extensions.forEach(extension => {
-        System.import(`/api/extensions/${ extension.id }/entrypoint`)
-          .then(extension => {
-            const Class = extension.default;
-            new Class();
-          });
-      });
-
-    }());
   }
 
 }

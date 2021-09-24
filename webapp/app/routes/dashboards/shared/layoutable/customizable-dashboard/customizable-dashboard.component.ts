@@ -73,7 +73,7 @@ export class CustomizableDashboardComponent implements OnInit, OnDestroy {
       initCallback: () => {
         console.log('initCallback');
       },
-      itemInitCallback: (item, itemComponent) => {
+      itemInitCallback: () => {
         // console.log('itemInitCallback', { item, itemComponent });
       },
       gridSizeChangedCallback: () => {
@@ -128,7 +128,7 @@ export class CustomizableDashboardComponent implements OnInit, OnDestroy {
   }
 
   public gridsterEmptyCellDropCallback(event: DragEvent, item: GridsterItem) {
-    if(event.dataTransfer) {
+    if (event.dataTransfer) {
       const text = event.dataTransfer.getData('text/plain');
       try {
         const data = JSON.parse(text);

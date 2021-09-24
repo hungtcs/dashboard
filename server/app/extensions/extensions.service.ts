@@ -15,7 +15,7 @@ export class ExtensionsService {
       await fs.readdir(path.join(__dirname, '../../apps')),
       async (app) => {
         const stat = await fs.stat(path.join(__dirname, '../../apps', app));
-        if(!stat.isDirectory()) {
+        if (!stat.isDirectory()) {
           return false;
         }
         try {
@@ -41,7 +41,7 @@ export class ExtensionsService {
   public async getExtensionEntrypoint(id: string) {
     const extensions = await this.getExtensions();
     const extension = extensions.find(extension => extension.id === id);
-    if(!extension) {
+    if (!extension) {
       return;
     }
     return await fs.readFile(path.join(__dirname, '../../apps', extension.id, extension.entrypoint), { encoding: 'utf-8' });
