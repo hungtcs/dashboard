@@ -1,4 +1,4 @@
-import { finalize, Subject, takeUntil, tap } from 'rxjs';
+import { debounceTime, finalize, Subject, takeUntil, tap } from 'rxjs';
 import { Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { GridsterConfig, GridType, DisplayGrid, CompactType, GridsterItem, GridsterComponent } from 'angular-gridster2';
 
@@ -11,8 +11,9 @@ import { GridsterConfig, GridType, DisplayGrid, CompactType, GridsterItem, Grids
 export class CustomizableDashboardComponent implements OnInit, OnDestroy {
   public static DROP_VALIDATION_STRING = 'CUSTOMIZABLE_DASHBOARD_DROP_VALIDATION_STRING';
 
-  private destroy = new Subject<void>();
-  private containerResize = new Subject<void>();
+  private readonly destroy = new Subject<void>();
+  private readonly containerResize = new Subject<void>();
+  private readonly itemChangedSubject = new Subject<void>();
 
   public editing: boolean = false;
 
@@ -27,6 +28,7 @@ export class CustomizableDashboardComponent implements OnInit, OnDestroy {
   constructor(
       private readonly renderer: Renderer2,
       private readonly elementRef: ElementRef<HTMLElement>) {
+    this.gridsterItemChangeCallback = this.gridsterItemChangeCallback.bind(this);
     this.gridsterEmptyCellDropCallback = this.gridsterEmptyCellDropCallback.bind(this);
     this.gridsterOptions = {
       setGridSize: true,
@@ -76,6 +78,7 @@ export class CustomizableDashboardComponent implements OnInit, OnDestroy {
       itemInitCallback: () => {
         // console.log('itemInitCallback', { item, itemComponent });
       },
+      itemChangeCallback: this.gridsterItemChangeCallback,
       gridSizeChangedCallback: () => {
         // console.log('gridSizeChangedCallback', { curHeight: this.gridster.curHeight });
       },
@@ -95,6 +98,17 @@ export class CustomizableDashboardComponent implements OnInit, OnDestroy {
           this.gridster.options.api?.resize?.();
           this.renderer.setStyle(this.elementRef.nativeElement, 'height', `auto`);
         });
+      }))
+      .subscribe();
+    this.itemChangedSubject
+      .pipe(takeUntil(this.destroy))
+      .pipe(debounceTime(128))
+      .pipe(tap(() => {
+        // expansion and reduction gridster min rows
+        this.gridster.options.minRows = 1;
+        this.gridster.options.api?.optionsChanged?.();
+        this.gridster.options.minRows = this.gridster.rows + 1;
+        this.gridster.options.api?.optionsChanged?.();
       }))
       .subscribe();
   }
@@ -127,7 +141,11 @@ export class CustomizableDashboardComponent implements OnInit, OnDestroy {
     this.stopEditing();
   }
 
-  public gridsterEmptyCellDropCallback(event: DragEvent, item: GridsterItem) {
+  private gridsterItemChangeCallback() {
+    this.itemChangedSubject.next();
+  }
+
+  private gridsterEmptyCellDropCallback(event: DragEvent, item: GridsterItem) {
     if (event.dataTransfer) {
       const text = event.dataTransfer.getData('text/plain');
       try {

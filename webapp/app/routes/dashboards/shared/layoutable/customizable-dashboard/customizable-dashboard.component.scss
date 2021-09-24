@@ -26,10 +26,13 @@ gridster {
   }
   &.gridster--editing {
     user-select: none;
-    ::ng-deep {
-      app-visualization-wrapper {
-        cursor: grab;
+    > gridster-item {
+      cursor: grab;
+      &.gridster-item-moving {
+        cursor: grabbing;
       }
+    }
+    ::ng-deep {
       app-visualization-wrapper > *,
       app-visualization-wrapper > header {
         user-select: none;
