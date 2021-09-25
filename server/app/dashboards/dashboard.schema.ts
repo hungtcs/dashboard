@@ -37,6 +37,12 @@ export class Widget {
   @ApiProperty({ description: '可视化' })
   public visualization!: Visualization;
 
+  @Prop()
+  @IsString()
+  @IsNotEmpty()
+  @ApiProperty({ description: '扩展ID' })
+  public extension!: string;
+
 }
 
 const WidgetSchema = SchemaFactory.createForClass(Widget)

@@ -7,6 +7,17 @@
   > header {
     flex: 0 0 auto;
     padding: 16px;
+    display: flex;
+    align-items: center;
+    > h3 {
+      flex: 1 1 auto;
+      margin: 0px;
+      font-size: 14px;
+      font-weight: normal;
+    }
+    > .extra {
+      flex: 0 0 auto;
+    }
   }
   > main {
     flex: 1 1 auto;

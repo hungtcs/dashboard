@@ -1,21 +1,14 @@
-import * as echarts from 'echarts/core';
-import { LineChart } from 'echarts/charts';
 import { Visualization } from '../interfaces';
-import { CanvasRenderer } from 'echarts/renderers';
-import { TooltipComponent, GridComponent } from 'echarts/components';
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { DataSourcesService } from '@webapp/routes/data-sources/shared/index';
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { tap } from 'rxjs';
-
-echarts.use([TooltipComponent, GridComponent, LineChart, CanvasRenderer]);
 
 @Component({
   selector: 'app-visualization-render',
   styleUrls: ['./visualization-render.component.scss'],
   templateUrl: './visualization-render.component.html',
 })
-export class VisualizationRenderComponent implements OnInit {
-  private chartsInstance?: echarts.ECharts;
+export class VisualizationRenderComponent implements OnInit, OnDestroy {
+  private destroyCallbacks = new Array<() => void>();
 
   @Input()
   public visualization!: Visualization;
@@ -23,48 +16,28 @@ export class VisualizationRenderComponent implements OnInit {
   @ViewChild('container', { static: true })
   public container!: ElementRef<HTMLElement>;
 
-  constructor(
-      private readonly dataSourcesService: DataSourcesService,) {
+  constructor() {
 
   }
 
   public ngOnInit(): void {
-    this.chartsInstance = echarts.init(this.container.nativeElement);
+    (window as any).getContanerElement = () => {
+      return this.container.nativeElement;
+    }
+    (window as any).onDestroy = (callback: () => void) => {
+      this.destroyCallbacks.push(callback);
+    }
+    const instance = new this.visualization.entrypoint(this.container.nativeElement);
+    console.log(instance);
+  }
 
-    const { dataSource, dataQuery, axis, series } = this.visualization;
-    const { xAxis, yAxis } = axis;
-    const { type, collection } = dataQuery;
-
-    this.dataSourcesService.queryDataFromDataSource(type, collection, dataSource.id)
-      .pipe(tap(data => {
-        this.chartsInstance!.setOption({
-          xAxis: {
-            name: xAxis.name,
-            type: xAxis.type,
-            data: data.map(item => item[xAxis.field]),
-          },
-          yAxis: {
-            name: yAxis.name,
-            type: yAxis.type,
-          },
-          series: series.map((serie: any) => {
-            return {
-              name: serie.name,
-              type: serie.type,
-              data: data.map(item => item[serie.field]),
-            };
-          }),
-          tooltip: {
-            confine: true,
-            trigger: 'axis',
-          },
-        });
-      }))
-      .subscribe();
+  public ngOnDestroy() {
+    // dsfds
+    this.destroyCallbacks.forEach(callback => callback.call(null));
   }
 
   public onContainerResize() {
-    this.chartsInstance?.resize();
+    // pass
   }
 
 }

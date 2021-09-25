@@ -36,8 +36,7 @@ gridster {
       }
     }
     ::ng-deep {
-      app-visualization-wrapper > *,
-      app-visualization-wrapper > header {
+      app-visualization-wrapper > main {
         user-select: none;
         pointer-events: none;
       }

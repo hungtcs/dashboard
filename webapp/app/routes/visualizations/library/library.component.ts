@@ -24,7 +24,7 @@ export class LibraryComponent {
       .pipe(tap(chartType => {
         if (chartType !== undefined) {
           console.log(chartType);
-          this.router.navigate(['/visualizations/create', chartType.code]);
+          this.router.navigate(['/visualizations/create', chartType.id]);
         }
       }))
       .subscribe();

@@ -1,0 +1,7 @@
+{
+  "id": "echarts",
+  "name": "ECharts",
+  "nature": "stateful",
+  "description": "可配置的ECharts图表",
+  "entrypoint": "./index.js"
+}

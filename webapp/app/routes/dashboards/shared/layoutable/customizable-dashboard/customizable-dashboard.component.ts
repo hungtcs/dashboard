@@ -1,5 +1,5 @@
 import { debounceTime, filter, finalize, Subject, takeUntil, tap } from 'rxjs';
-import { Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { GridsterConfig, GridType, DisplayGrid, CompactType, GridsterItem, GridsterComponent } from 'angular-gridster2';
 
 @Component({
@@ -24,6 +24,9 @@ export class CustomizableDashboardComponent implements OnInit, OnDestroy {
 
   @Input()
   public widgets: Array<GridsterItem> = [];
+
+  @Output()
+  public widgetsChange = new EventEmitter<Array<GridsterItem>>();
 
   constructor(
       private readonly renderer: Renderer2,
@@ -119,6 +122,11 @@ export class CustomizableDashboardComponent implements OnInit, OnDestroy {
     this.destroy.complete();
   }
 
+  public onRemoveWidget(widget: GridsterItem) {
+    this.widgets = this.widgets.filter(item => item !== widget);
+    this.widgetsChange.emit(this.widgets);
+  }
+
   public startEditing() {
     this.editing = true;
 
@@ -155,6 +163,7 @@ export class CustomizableDashboardComponent implements OnInit, OnDestroy {
           this.widgets.push({
             ...item,
             visualization: data.visualization,
+            extension: data.visualization,
           });
         } else {
           throw new Error(text);

@@ -41,11 +41,11 @@ export class DashboardsComponent implements OnInit, OnDestroy {
     this.destroy.complete();
   }
 
-  public onVisualizationDragStart({ event, visualization }: VisualizationDragStartEvent) {
+  public onVisualizationDragStart({ event, extension }: VisualizationDragStartEvent) {
     if (event.dataTransfer) {
       event.dataTransfer.setData('text/plain', JSON.stringify({
         validation: CustomizableDashboardComponent.DROP_VALIDATION_STRING,
-        visualization: visualization.id,
+        visualization: extension.id,
       }));
       event.dataTransfer.dropEffect = 'copy';
     }

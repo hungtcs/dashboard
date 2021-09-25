@@ -1,5 +1,13 @@
-<header>
-  {{ visualization?.name }}
+<header (mousedown)="$event.stopPropagation();">
+  <h3>{{ visualization?.name }}</h3>
+  <div class="extra">
+    <ng-container *ngIf="editing">
+      <button mat-icon-button
+        (click)="onRemoveWidgetClick();">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </ng-container>
+  </div>
 </header>
 <main>
   <ng-container *ngIf="visualization === null">

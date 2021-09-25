@@ -6,6 +6,7 @@
 </header>
 <main mat-dialog-content>
   <mat-grid-list rowHeight="96px" cols="3" gutterSize="16px">
+    <!--
     <ng-container *ngFor="let chartType of chartTypes; first as first;">
       <mat-grid-tile>
         <div class="chart-type" (click)="onChartTypeClick(chartType);">
@@ -13,6 +14,18 @@
           <div>
             <h4>{{ chartType.name }}</h4>
             <p>{{ chartType.description }}</p>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </ng-container>
+    -->
+    <ng-container *ngFor="let extension of extensions; first as first;">
+      <mat-grid-tile>
+        <div class="chart-type" (click)="onChartTypeClick(extension);">
+          <mat-icon>table_chart</mat-icon>
+          <div>
+            <h4>{{ extension.name }}</h4>
+            <p>{{ extension.description }}</p>
           </div>
         </div>
       </mat-grid-tile>

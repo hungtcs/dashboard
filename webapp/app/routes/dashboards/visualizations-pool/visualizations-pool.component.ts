@@ -1,10 +1,10 @@
-import { Subject, takeUntil, tap } from 'rxjs';
+import { Subject } from 'rxjs';
+import { ExtensionsService } from '@webapp/shared/services';
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { Visualization, VisualizationsService } from '@webapp/routes/visualizations/shared/index';
 
 export interface VisualizationDragStartEvent {
   event: DragEvent;
-  visualization: Visualization;
+  extension: any;
 }
 
 @Component({
@@ -15,21 +15,23 @@ export interface VisualizationDragStartEvent {
 export class VisualizationsPoolComponent implements OnInit, OnDestroy {
   private readonly destroy = new Subject<void>();
 
-  public visualizations: Array<Visualization> = [];
+  public statelessExtensions: Array<any> = [];
 
   @Output()
   public visualizationDragStart = new EventEmitter<VisualizationDragStartEvent>();
 
   constructor(
-      private readonly visualizationsService: VisualizationsService) {
+      private readonly extensionsService: ExtensionsService) {
 
   }
 
   public ngOnInit(): void {
-    this.visualizationsService.getVisualizations()
-      .pipe(takeUntil(this.destroy))
-      .pipe(tap(data => this.visualizations = data))
-      .subscribe();
+    this.statelessExtensions = this.extensionsService.extensions
+      .filter(extension => extension.nature === 'stateless');
+    // this.visualizationsService.getVisualizations()
+    //   .pipe(takeUntil(this.destroy))
+    //   .pipe(tap(data => this.visualizations = data))
+    //   .subscribe();
   }
 
   public ngOnDestroy() {
@@ -37,8 +39,8 @@ export class VisualizationsPoolComponent implements OnInit, OnDestroy {
     this.destroy.complete();
   }
 
-  public onDragStart(event: DragEvent, visualization: Visualization) {
-    this.visualizationDragStart.emit({ event, visualization });
+  public onDragStart(event: DragEvent, extension: any) {
+    this.visualizationDragStart.emit({ event, extension });
   }
 
 }

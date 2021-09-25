@@ -1,5 +1,7 @@
 {
   "id": "current-time",
   "name": "Current Time",
+  "nature": "stateless",
+  "description": "show current time",
   "entrypoint": "./index.js"
 }

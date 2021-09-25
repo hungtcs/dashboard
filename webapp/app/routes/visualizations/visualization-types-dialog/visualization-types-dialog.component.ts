@@ -1,37 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ExtensionsService } from '@webapp/shared/services';
 
 @Component({
   selector: 'app-visualization-types-dialog',
   templateUrl: './visualization-types-dialog.component.html',
   styleUrls: ['./visualization-types-dialog.component.scss']
 })
-export class VisualizationTypesDialogComponent {
-
-  public chartTypes = [
-    {
-      code: 'charts',
-      icon: 'insert_chart_outlined',
-      name: 'Charts',
-      description: '柱状图、折线图等'
-    },
-    {
-      code: 'table',
-      icon: 'table_chart',
-      name: 'Table',
-      description: '使用表格展示数据',
-    },
-    {
-      code: 'map',
-      icon: 'map',
-      name: 'Map',
-      description: '适用于地理位置数据，展示在地图上'
-    },
-  ];
+export class VisualizationTypesDialogComponent implements OnInit {
+  public extensions: Array<any> = [];
 
   constructor(
-      private readonly matDialogRef: MatDialogRef<VisualizationTypesDialogComponent, any | undefined>) {
+      private readonly matDialogRef: MatDialogRef<VisualizationTypesDialogComponent, any | undefined>,
+      private readonly extensionsService: ExtensionsService) {
 
+  }
+
+  public ngOnInit() {
+    this.extensions = this.extensionsService.extensions
+      .filter(extension => extension.nature === 'stateful');
   }
 
   public onChartTypeClick(chartType: any) {

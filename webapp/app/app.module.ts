@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { RoutesModule } from './routes/routes.module';
@@ -7,6 +7,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogConfig, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ErrorInterceptor } from './shared/interceptors';
+import { ExtensionsService } from './shared/services';
+import { forkJoin } from 'rxjs';
 
 @NgModule({
   imports: [
@@ -17,6 +19,18 @@ import { ErrorInterceptor } from './shared/interceptors';
     BrowserAnimationsModule,
   ],
   providers: [
+    {
+      deps: [ExtensionsService],
+      multi: true,
+      provide: APP_INITIALIZER,
+      useFactory: (extensionsService: ExtensionsService) => {
+        return () => {
+          return forkJoin([
+            extensionsService.loadExtensions(),
+          ]);
+        };
+      },
+    },
     {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
       useValue: <MatDialogConfig>{
