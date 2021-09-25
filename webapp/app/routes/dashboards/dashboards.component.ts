@@ -1,7 +1,7 @@
-import { tap } from 'rxjs';
+import { Subject, takeUntil, tap } from 'rxjs';
 import { VisualizationDragStartEvent } from './visualizations-pool/visualizations-pool.component';
 import { Dashboard, DashboardsService } from './shared/index';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { CustomizableDashboardComponent } from './shared/layoutable/customizable-dashboard/customizable-dashboard.component';
 
 @Component({
@@ -9,7 +9,8 @@ import { CustomizableDashboardComponent } from './shared/layoutable/customizable
   styleUrls: ['./dashboards.component.scss'],
   templateUrl: './dashboards.component.html',
 })
-export class DashboardsComponent implements OnInit {
+export class DashboardsComponent implements OnInit, OnDestroy {
+  private readonly destroy = new Subject<void>();
   public dashboards: Array<Dashboard> = [];
   public currentDashboard: Dashboard | null = null;
 
@@ -29,9 +30,15 @@ export class DashboardsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.dashboardsService.getDashboards()
+      .pipe(takeUntil(this.destroy))
       .pipe(tap(data => this.dashboards = data))
       .pipe(tap(data => this.setCurrentDashboard(data[0])))
       .subscribe();
+  }
+
+  public ngOnDestroy() {
+    this.destroy.next();
+    this.destroy.complete();
   }
 
   public onVisualizationDragStart({ event, visualization }: VisualizationDragStartEvent) {

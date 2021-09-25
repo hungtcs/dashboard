@@ -1,4 +1,4 @@
-import { debounceTime, finalize, Subject, takeUntil, tap } from 'rxjs';
+import { debounceTime, filter, finalize, Subject, takeUntil, tap } from 'rxjs';
 import { Component, ElementRef, Input, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { GridsterConfig, GridType, DisplayGrid, CompactType, GridsterItem, GridsterComponent } from 'angular-gridster2';
 
@@ -67,7 +67,7 @@ export class CustomizableDashboardComponent implements OnInit, OnDestroy {
         // dragHandleClass: 'applet-wrapper-drag-handle',
       },
       resizable: {
-        enabled: true,
+        enabled: false,
       },
 
       keepFixedHeightInMobile: true,
@@ -102,6 +102,7 @@ export class CustomizableDashboardComponent implements OnInit, OnDestroy {
       .subscribe();
     this.itemChangedSubject
       .pipe(takeUntil(this.destroy))
+      .pipe(filter(() => this.editing))
       .pipe(debounceTime(128))
       .pipe(tap(() => {
         // expansion and reduction gridster min rows

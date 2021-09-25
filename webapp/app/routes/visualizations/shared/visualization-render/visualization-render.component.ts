@@ -55,7 +55,8 @@ export class VisualizationRenderComponent implements OnInit {
             };
           }),
           tooltip: {
-            trigger: 'axis'
+            confine: true,
+            trigger: 'axis',
           },
         });
       }))

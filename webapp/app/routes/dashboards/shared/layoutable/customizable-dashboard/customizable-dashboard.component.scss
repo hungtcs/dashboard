@@ -13,6 +13,9 @@ gridster {
     @include mat.elevation(2);
     overflow: visible;
     border-radius: 8px;
+    &:hover {
+      z-index: 2 !important;
+    }
     &.gridster-item-moving {
       z-index: 2 !important;
     }
@@ -37,6 +40,13 @@ gridster {
       app-visualization-wrapper > header {
         user-select: none;
         pointer-events: none;
+      }
+    }
+  }
+  &.mobile {
+    > gridster-item {
+      &:last-of-type {
+        margin-bottom: 0px !important;
       }
     }
   }
